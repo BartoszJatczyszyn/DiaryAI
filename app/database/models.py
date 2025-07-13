@@ -114,3 +114,24 @@ class GarminActivity(Base):
 
     def __repr__(self):
         return f"<GarminActivity(id='{self.activity_id}', type='{self.type}', start='{self.start_time}')>"
+
+
+class GarminSleep(Base):
+    __tablename__ = "garmin_sleep_sessions"
+
+    day = Column(Date, primary_key=True, index=True)
+    start = Column(DateTime)
+    end = Column(DateTime)
+    total_sleep = Column(Time, nullable=False)
+    deep_sleep = Column(Time, nullable=False)
+    light_sleep = Column(Time, nullable=False)
+    rem_sleep = Column(Time, nullable=False)
+    awake = Column(Time, nullable=False)
+    avg_spo2 = Column(Float)
+    avg_rr = Column(Float)
+    avg_stress = Column(Float)
+    score = Column(Integer)
+    qualifier = Column(String)
+
+    def __repr__(self):
+        return f"<GarminSleep(day='{self.day}', total_sleep='{self.total_sleep}')>"
