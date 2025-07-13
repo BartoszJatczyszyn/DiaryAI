@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, Float, Date, Time
+from sqlalchemy import Column, Integer, Float, Date, Time, String, DateTime
 
 from app.database.base import Base
 
@@ -57,3 +57,60 @@ class GarminDailySummary(Base):
 
     def __repr__(self):
         return f"<GarminDailySummary(day='{self.day}', steps={self.steps}, hr_avg={self.hr_avg})>"
+
+
+class GarminActivity(Base):
+    __tablename__ = "garmin_activities"
+
+    activity_id = Column(String, primary_key=True, index=True)
+    name = Column(String)
+    # description = Column(String)
+    type = Column(String)
+    # course_id = Column(Integer)
+    laps = Column(Integer)
+    sport = Column(String)
+    sub_sport = Column(String)
+    # device_serial_number = Column(Integer)
+    self_eval_feel = Column(String)
+    self_eval_effort = Column(String)
+    training_load = Column(Float)
+    training_effect = Column(Float)
+    anaerobic_training_effect = Column(Float)
+    start_time = Column(DateTime)
+    stop_time = Column(DateTime)
+    elapsed_time = Column(Time, nullable=False)
+    moving_time = Column(Time, nullable=False)
+    distance = Column(Float)
+    cycles = Column(Float)
+    avg_hr = Column(Integer)
+    max_hr = Column(Integer)
+    avg_rr = Column(Float)
+    max_rr = Column(Float)
+    calories = Column(Integer)
+    avg_cadence = Column(Integer)
+    max_cadence = Column(Integer)
+    avg_speed = Column(Float)
+    max_speed = Column(Float)
+    ascent = Column(Float)
+    descent = Column(Float)
+    # max_temperature = Column(Float)
+    # min_temperature = Column(Float)
+    # avg_temperature = Column(Float)
+    start_lat = Column(Float)
+    start_long = Column(Float)
+    stop_lat = Column(Float)
+    stop_long = Column(Float)
+    # hr_zones_method = Column(String(18))
+    hrz_1_hr = Column(Integer)
+    hrz_2_hr = Column(Integer)
+    hrz_3_hr = Column(Integer)
+    hrz_4_hr = Column(Integer)
+    hrz_5_hr = Column(Integer)
+    hrz_1_time = Column(Time, nullable=False)
+    hrz_2_time = Column(Time, nullable=False)
+    hrz_3_time = Column(Time, nullable=False)
+    hrz_4_time = Column(Time, nullable=False)
+    hrz_5_time = Column(Time, nullable=False)
+
+    def __repr__(self):
+        return f"<GarminActivity(id='{self.activity_id}', type='{self.type}', start='{self.start_time}')>"
